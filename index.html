@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Default Site</title>
+    <meta name="description" content="A minimal responsive static site template." />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <a class="brand" href="/">Default Site</a>
+        <nav class="nav">
+          <a href="#features">Features</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container">
+          <h1>Ship a website without the ceremony.</h1>
+          <p class="lead">
+            This is a tiny, responsive static HTML template. Copy it, edit it, deploy it.
+          </p>
+          <div class="cta-row">
+            <a class="button" href="#features">See features</a>
+            <a class="button secondary" href="#contact">Contact</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="features" class="section">
+        <div class="container">
+          <h2>Features</h2>
+          <div class="grid">
+            <div class="card">
+              <h3>Responsive</h3>
+              <p>Looks fine on phones, tablets, and big screens.</p>
+            </div>
+            <div class="card">
+              <h3>Minimal CSS</h3>
+              <p>Small stylesheet you can extend without fighting a framework.</p>
+            </div>
+            <div class="card">
+              <h3>Easy deploy</h3>
+              <p>Works with GitHub Pages, any static host, or a basic VPS.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="about" class="section alt">
+        <div class="container">
+          <h2>About</h2>
+          <p>
+            Replace this content with your own. Add pages, add a build step, or keep it simple.
+          </p>
+        </div>
+      </section>
+
+      <section id="contact" class="section">
+        <div class="container">
+          <h2>Contact</h2>
+          <p>
+            Put an email address, a form link, or socials here.
+          </p>
+          <p class="fineprint">
+            Tip: keep secrets out of git. Use environment variables in CI.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <span>© <span id="year"></span> Default Site</span>
+        <span class="sep">·</span>
+        <a href="https://docs.openclaw.ai" target="_blank" rel="noreferrer">Built with OpenClaw</a>
+      </div>
+    </footer>
+
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>

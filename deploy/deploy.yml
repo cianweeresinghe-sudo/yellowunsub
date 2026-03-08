@@ -1,0 +1,9 @@
+# Deployment configuration for this site.
+
+method: github_pages
+branch: main
+build_dir: .
+
+# Notes:
+# - This repo is intended to deploy via GitHub Pages.
+# - If you later switch providers, change `method` and fields accordingly.
