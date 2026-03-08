@@ -1,0 +1,71 @@
+---
+import Layout from '../../../../components/Layout.astro';
+
+const title = 'How to unsubscribe in Gmail';
+const description = 'Quick Gmail unsubscribe methods: Unsubscribe button, List-Unsubscribe, filters, and spam.';
+---
+
+<Layout title={title} description={description}>
+  <section class="hero">
+    <div class="container">
+      <h1>How to unsubscribe in Gmail</h1>
+      <p>Gmail has a couple of genuinely useful unsubscribe tricks — here’s the fast version.</p>
+    </div>
+  </section>
+
+  <section class="container" style="padding: 0 0 2.2rem;">
+    <div class="grid">
+      <article class="card">
+        <div class="pad">
+          <div class="kicker">Best option</div>
+          <h2>Use Gmail’s Unsubscribe button</h2>
+          <ol class="steps">
+            <li>Open the email.</li>
+            <li>Look near the sender name for <strong>Unsubscribe</strong>.</li>
+            <li>Click it and confirm.</li>
+          </ol>
+          <p class="kicker">If you don’t see it, the sender may not support it.</p>
+        </div>
+
+        <div class="details">
+          <details>
+            <summary>If the footer is clipped</summary>
+            <p>
+              Some emails hide the footer. Scroll down and look for “View entire message”. Then scroll
+              again for the unsubscribe link.
+            </p>
+          </details>
+
+          <details>
+            <summary>If unsubscribing fails</summary>
+            <p>
+              Give it a couple of days. Some lists process slowly. If it keeps happening, mark the
+              message as spam.
+            </p>
+          </details>
+
+          <details>
+            <summary>Filters (nuclear option)</summary>
+            <p>
+              If you’re getting “transactional” emails you can’t unsubscribe from, create a filter to
+              archive or delete by sender.
+            </p>
+          </details>
+        </div>
+      </article>
+
+      <aside class="card">
+        <div class="pad">
+          <div class="kicker">Related</div>
+          <h2>Browse brands</h2>
+          <div class="links">
+            <a class="link" href={Astro.base + '/unsubscribe/'}>
+              <strong>Unsubscribe guides</strong>
+              <span>Find your brand</span>
+            </a>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+</Layout>

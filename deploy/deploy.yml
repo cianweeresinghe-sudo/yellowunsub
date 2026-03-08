@@ -1,0 +1,4 @@
+method: github_pages_actions
+branch: main
+build_dir: dist
+notes: "Deployed via GitHub Actions workflow .github/workflows/deploy.yml"

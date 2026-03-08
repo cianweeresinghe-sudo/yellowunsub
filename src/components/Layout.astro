@@ -1,0 +1,68 @@
+---
+import '../styles/global.css';
+import { siteConfig, disclosure } from '../config';
+
+type Props = {
+  title: string;
+  description?: string;
+};
+
+const { title, description } = Astro.props;
+const fullTitle = `${title} · ${siteConfig.name}`;
+---
+
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{fullTitle}</title>
+    {description ? <meta name="description" content={description} /> : null}
+
+    <link rel="icon" type="image/svg+xml" href={Astro.base + '/favicon.svg'} />
+
+    <meta property="og:title" content={fullTitle} />
+    {description ? <meta property="og:description" content={description} /> : null}
+
+    {/* Skimlinks (optional). Set publisher code in src/config.ts */}
+    {siteConfig.skimlinksPublisherCode ? (
+      <script
+        async
+        src={`https://s.skimresources.com/js/${siteConfig.skimlinksPublisherCode}.skimlinks.js`}
+      />
+    ) : null}
+  </head>
+
+  <body>
+    <header class="header">
+      <div class="container">
+        <div class="inner">
+          <a class="brand" href={Astro.base + '/'}>
+            <span class="dot" />
+            <span>{siteConfig.name}</span>
+          </a>
+
+          <nav class="nav">
+            <a href={Astro.base + '/unsubscribe/'}>Unsubscribe guides</a>
+            <a href={Astro.base + '/unsubscribe/guides/gmail/'}>Gmail</a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="inner">
+          <span>{disclosure.affiliateShort}</span>
+          <span>·</span>
+          <a href={Astro.base + '/'}>Home</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

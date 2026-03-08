@@ -1,0 +1,140 @@
+---
+import Layout from '../../components/Layout.astro';
+import { brands, getBrand } from '../../data/brands';
+import { disclosure } from '../../config';
+
+export function getStaticPaths() {
+  return brands.map((b) => ({ params: { slug: b.slug } }));
+}
+
+const { slug } = Astro.params;
+const brand = getBrand(slug);
+if (!brand) throw new Error(`Unknown brand slug: ${slug}`);
+
+const title = `How to unsubscribe from ${brand.name} emails`;
+const description = `${brand.summary} Fast unsubscribe steps, official links, and alternatives.`;
+---
+
+<Layout title={title} description={description}>
+  <section class="hero">
+    <div class="container">
+      <div class="badge">Category: {brand.category}</div>
+      <h1>How to unsubscribe from {brand.name} emails</h1>
+      <p>{brand.summary}</p>
+      {brand.lastVerifiedAt ? (
+        <div class="pills">
+          <span class="pill">Last verified: {brand.lastVerifiedAt}</span>
+        </div>
+      ) : null}
+    </div>
+  </section>
+
+  <section class="container" style="padding: 0 0 2.2rem;">
+    <div class="grid">
+      <article class="card">
+        <div class="pad">
+          <div class="kicker">The fastest way</div>
+          <h2>Quick steps</h2>
+          <ol class="steps">
+            {brand.stepsFastest.map((s) => (
+              <li>{s}</li>
+            ))}
+          </ol>
+        </div>
+
+        <div class="details">
+          <details open>
+            <summary>Who are {brand.name} and why do they email me?</summary>
+            <p>{brand.whyTheyEmail}</p>
+          </details>
+
+          <details>
+            <summary>Unsubscribe via the link in the email</summary>
+            <ol class="steps">
+              {brand.stepsEmail.map((s) => (
+                <li>{s}</li>
+              ))}
+            </ol>
+          </details>
+
+          {brand.stepsWebsite ? (
+            <details>
+              <summary>Unsubscribe via the website / account settings</summary>
+              <ol class="steps">
+                {brand.stepsWebsite.map((s) => (
+                  <li>{s}</li>
+                ))}
+              </ol>
+            </details>
+          ) : null}
+
+          <details>
+            <summary>Gmail quick tip</summary>
+            <p>
+              In Gmail you’ll often see an <strong>Unsubscribe</strong> button near the sender name.
+              If it’s there, use it — it’s usually the cleanest option.
+            </p>
+            <p>
+              Full guide: <a href={Astro.base + '/unsubscribe/guides/gmail/'}>Unsubscribing in Gmail</a>.
+            </p>
+          </details>
+
+          <details>
+            <summary>When unsubscribing doesn’t work</summary>
+            <p>
+              Some brands have multiple lists. If you still get emails after a few days, check for a
+              preference centre, then consider marking the email as spam.
+            </p>
+          </details>
+        </div>
+      </article>
+
+      <aside class="card">
+        <div class="pad">
+          <div class="kicker">Official links</div>
+          <h2>Go direct</h2>
+          <div class="links">
+            <a class="link" href={brand.websiteUrl} rel="nofollow sponsored" target="_blank">
+              <strong>{brand.name} website</strong>
+              <span>Open the official site</span>
+            </a>
+            {brand.preferenceCenterUrl ? (
+              <a class="link" href={brand.preferenceCenterUrl} rel="nofollow sponsored" target="_blank">
+                <strong>Email preferences</strong>
+                <span>Preference centre / account settings</span>
+              </a>
+            ) : null}
+            {brand.privacyUrl ? (
+              <a class="link" href={brand.privacyUrl} rel="nofollow sponsored" target="_blank">
+                <strong>Privacy policy</strong>
+                <span>What data they use and why</span>
+              </a>
+            ) : null}
+            {brand.supportUrl ? (
+              <a class="link" href={brand.supportUrl} rel="nofollow sponsored" target="_blank">
+                <strong>Support</strong>
+                <span>Contact the company</span>
+              </a>
+            ) : null}
+          </div>
+        </div>
+
+        {brand.affiliateLinks?.length ? (
+          <div class="pad" style="border-top: 1px solid var(--border);">
+            <div class="kicker">Alternatives (affiliate links)</div>
+            <h2>Try instead</h2>
+            <div class="kicker" style="margin-top: -0.35rem;">{disclosure.affiliateShort}</div>
+            <div class="links" style="margin-top: 0.8rem;">
+              {brand.affiliateLinks.map((l) => (
+                <a class="link" href={l.url} rel="nofollow sponsored" target="_blank">
+                  <strong>{l.title}</strong>
+                  <span>{l.note ?? 'Alternative option'}</span>
+                </a>
+              ))}
+            </div>
+          </div>
+        ) : null}
+      </aside>
+    </div>
+  </section>
+</Layout>

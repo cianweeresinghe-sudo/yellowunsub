@@ -1,0 +1,42 @@
+---
+import Layout from '../../../components/Layout.astro';
+import { categories, getBrandsByCategory } from '../../../data/brands';
+
+export function getStaticPaths() {
+  return categories.map((c) => ({ params: { category: c } }));
+}
+
+const { category } = Astro.params;
+const brands = getBrandsByCategory(category);
+
+const title = `${category} unsubscribe guides`;
+const description = `Browse UK unsubscribe guides for: ${category}.`;
+---
+
+<Layout title={title} description={description}>
+  <section class="hero">
+    <div class="container">
+      <div class="badge">Category</div>
+      <h1>{category}</h1>
+      <p>{brands.length} brand(s) in this category.</p>
+    </div>
+  </section>
+
+  <section class="container" style="padding: 0 0 2.2rem;">
+    <div class="card">
+      <div class="pad">
+        <div class="links">
+          {brands
+            .slice()
+            .sort((a, b) => a.name.localeCompare(b.name))
+            .map((b) => (
+              <a class="link" href={Astro.base + `/unsubscribe/${b.slug}/`}>
+                <strong>{b.name}</strong>
+                <span>{b.summary}</span>
+              </a>
+            ))}
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
